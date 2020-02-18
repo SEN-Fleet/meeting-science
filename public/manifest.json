@@ -1,25 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "name": "Meeting Science",
+  "version": "1.0",
+  "description": "Meeting Science Extension for collaborative meetings",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_title": "Meeting Science"
+  },
+  "permissions": ["identity"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "icons": {
+    "256": "meeting-science-icon-256.png",
+    "512": "meeting-science-icon-512.png"
+  },
+  "oauth2": {
+    "client_id": "808053459910-3k8263fa07l5p8favnvqgg331o26f97p.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/calendar.readonly"]
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmAJ2RrbI3/BF+O6MnmBQpmTtWWxnXnIZeMEd88TxomMynyGlnbIdjYlvmEYipCabc2uopSIKeZAVPbpnx3MpL5+KnY2Q6SP8+AAB1EAozfwxDwTTj+Dcma0TeGDpxVHjhL/SJETk02brrxuqss9p7OviBEEC9YeKhh3uLzpv2V/sZx5LVojclaXHmAabikBXq8A6+Q0A+wJn0y572IhLRcmmyEg6VaFO6JVEbyXHYGk6Pc4/M8vIPp2CLWLYc2+2QpJdnvKuQLgP2kGVK6DKAK2PllAgTvRuWCCh8M6X3APwCdv0B6HKlw5uy0Qk9t7V93+6z2U1bFomH8685D8rAwIDAQAB",
+  "content_security_policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline' 'sha256-G5stEsial6txXnhC9rcZMhJDhgSEzVOcUH5qHhdo0LE='; object-src 'self'"
 }

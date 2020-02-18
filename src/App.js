@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, Fragment } from 'react';
+
 import './App.css';
 
 function App() {
+  const [eventsList, setEventsList] = useState([]);
+
+  const handleClick = () => {
+    window.chrome.identity.getAuthToken({ interactive: true }, function(token) {
+      console.log(token);
+      var init = {
+        method: 'GET',
+        async: true,
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        contentType: 'json'
+      };
+      fetch(
+        'https://www.googleapis.com/calendar/v3/calendars/primary/events?key=AIzaSyCNBqYRAgzeeA2maUFrwNwe1wxl8bxcl0k',
+        init
+      )
+        .then(response => response.json())
+        .then(function(data) {
+          console.log(data);
+          setEventsList(data.items);
+        });
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <button onClick={handleClick}>List Events</button>
+      <ul>
+        {eventsList.length > 0 &&
+          eventsList.map(function(eventList) {
+            return <li>{eventList.summary}</li>;
+          })}
+      </ul>
+    </Fragment>
   );
 }
 
